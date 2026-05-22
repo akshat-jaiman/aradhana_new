@@ -1,0 +1,16 @@
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Java
+backend/target/
+backend/.mvn/wrapper/dists/
+backend/.mvn/wrapper/*.zip
+
+# IDE/OS
+.idea/
+.vscode/
+*.iml
+Thumbs.db
+.DS_Store
