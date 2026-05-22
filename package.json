@@ -2,6 +2,7 @@
   "name": "aradhana-public-school-monorepo",
   "private": true,
   "version": "0.0.1",
+  "homepage": "https://akshat-jaiman.github.io/aradhana_new/",
   "scripts": {
     "dev:backend": "cd backend && mvnw.cmd spring-boot:run",
     "dev:frontend": "npm --prefix frontend run dev",
