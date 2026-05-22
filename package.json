@@ -7,9 +7,14 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:status": "node scripts/dev-status.mjs",
-    "build:frontend": "npm --prefix frontend run build"
+    "build:frontend": "npm --prefix frontend run build",
+    "predeploy": "npm run build --prefix frontend",
+  "deploy": "gh-pages -prefix frontend -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "gh-pages": "^6.3.0"
   }
 }
