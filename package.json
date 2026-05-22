@@ -9,7 +9,7 @@
     "dev:status": "node scripts/dev-status.mjs",
     "build:frontend": "npm --prefix frontend run build",
     "predeploy": "npm run build --prefix frontend",
-  "deploy": "gh-pages -prefix frontend -d build",
+  "deploy": "gh-pages -d frontend/dist",
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
