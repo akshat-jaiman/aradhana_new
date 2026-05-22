@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+
+WRAPPER_DIR="$(cd "$(dirname "$0")" && pwd)/.mvn/wrapper"
+PROPS_FILE="$WRAPPER_DIR/maven-wrapper.properties"
+
+if [ ! -f "$PROPS_FILE" ]; then
+  echo "[ERROR] $PROPS_FILE not found."
+  exit 1
+fi
+
+DIST_URL="$(grep '^distributionUrl=' "$PROPS_FILE" | sed 's/^distributionUrl=//')"
+if [ -z "$DIST_URL" ]; then
+  echo "[ERROR] distributionUrl is missing in maven-wrapper.properties"
+  exit 1
+fi
+
+DIST_DIR="$WRAPPER_DIR/dists"
+ZIP_FILE="$DIST_DIR/apache-maven.zip"
+MAVEN_HOME="$DIST_DIR/apache-maven"
+
+mkdir -p "$DIST_DIR"
+
+if [ ! -x "$MAVEN_HOME/bin/mvn" ]; then
+  echo "Downloading Maven distribution..."
+  if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$DIST_URL" -o "$ZIP_FILE"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -qO "$ZIP_FILE" "$DIST_URL"
+  else
+    echo "[ERROR] curl or wget is required to download Maven."
+    exit 1
+  fi
+
+  rm -rf "$MAVEN_HOME"
+  unzip -q -o "$ZIP_FILE" -d "$DIST_DIR"
+  EXTRACTED_DIR="$(find "$DIST_DIR" -maxdepth 1 -type d -name 'apache-maven-*' | head -n 1)"
+  if [ -z "$EXTRACTED_DIR" ]; then
+    echo "[ERROR] Unable to locate extracted Maven directory."
+    exit 1
+  fi
+  mv "$EXTRACTED_DIR" "$MAVEN_HOME"
+fi
+
+exec "$MAVEN_HOME/bin/mvn" "$@"

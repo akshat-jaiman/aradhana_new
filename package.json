@@ -1,0 +1,15 @@
+{
+  "name": "aradhana-public-school-monorepo",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev:backend": "cd backend && mvnw.cmd spring-boot:run",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:status": "node scripts/dev-status.mjs",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

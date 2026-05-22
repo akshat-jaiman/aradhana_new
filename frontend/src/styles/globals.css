@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #1a1a1a;
+  background-color: #f9f9f7;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  @apply bg-oakridge-offwhite text-oakridge-charcoal font-sans antialiased;
+}
+
+.editorial-grid {
+  background-image:
+    linear-gradient(rgba(197, 160, 89, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 160, 89, 0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
